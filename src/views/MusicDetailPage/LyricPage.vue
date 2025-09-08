@@ -44,7 +44,7 @@
                 <i class="iconfont icon-shangyishoushangyige"></i>
                 <van-icon name="play" class="play" v-if="PlayStatus===false" @click="play"/>
                 <van-icon name="pause" class="pause" v-if="PlayStatus===true" @click="pause"/>
-                <i class="iconfont icon-xiayigexiayishou"></i>
+                <i class="iconfont icon-xiayigexiayishou" @click="playNext"></i>
                 <van-icon name="wap-nav" class="playlist" @click="ShowPlaylist"/>
             </div>
         </div>
@@ -99,7 +99,9 @@ const progressPercent = computed(() => {
 const PlayListPopup=computed(()=>
     store.getters['PlayListPopupControl/getPlayListPopup']
 )
-
+const playList=computed(()=>
+    store.getters['music/getplayList']
+)
 function goback(){
     router.back()
 }
@@ -136,6 +138,20 @@ function parseLyric(raw) {
   }
 
   return result
+}
+function playNext(){
+  console.log('播放下一首playList',playList.value)
+  console.log('播放下一首musicID.value',musicID.value)
+  const index = playList.value.findIndex(id => id === musicID.value)
+  console.log('index',index)
+  if (index !== -1 && index < playList.value.length - 1) {
+    const nextSong = playList.value[index + 1]
+    console.log('下一首歌曲id',nextSong)
+    store.dispatch('music/updatemusicID', nextSong) // 触发上面的 watch 自动播放
+  } else {
+    console.log('已经是最后一首')
+    store.dispatch('music/updatePlayStatus', false) // 停止播放
+  }
 }
 // 显示歌单列表
 function ShowPlaylist(){
