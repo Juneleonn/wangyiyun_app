@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_4670201_qlemlha3jm.css">
+
   </head>
   <body>
     <noscript>
@@ -15,3 +17,17 @@
     <!-- built files will be auto injected -->
   </body>
 </html>
+<script>
+  (function () {
+    const docEl = document.documentElement;
+    const resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+    const recalc = () => {
+      const width = docEl.clientWidth;
+      if (!width) return;
+      // 假设设计稿是 375px，设置 1rem = width / 37.5
+      docEl.style.fontSize = (width / 37.5) + 'px';
+    };
+    window.addEventListener(resizeEvt, recalc, false);
+    document.addEventListener('DOMContentLoaded', recalc, false);
+  })();
+</script>

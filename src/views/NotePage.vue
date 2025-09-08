@@ -1,0 +1,14 @@
+<template>
+    <div class="NotePage">
+        <div class="NotePageContainer">
+            笔记页
+            <BottomNav/>
+        </div>
+    </div>
+</template>
+
+<script setup>
+// 导入页面
+import BottomNav from '@/components/HomePage/elements/BottomNav.vue'
+
+</script>
