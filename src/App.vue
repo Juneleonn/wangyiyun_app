@@ -26,7 +26,17 @@ const store=useStore()
 // )
 
 onMounted(async()=>{
-RankDetailData.value=await getRankDetail()
+  // 从 localStorage 恢复登录状态，避免刷新后误判为未登录
+  try {
+    const saved = localStorage.getItem('UserID')
+    if (saved) {
+      const uid = JSON.parse(saved)
+      store.commit('UserInfo/setUserID', uid)
+    }
+  } catch (_) {
+    // 解析失败时忽略，保持未登录状态
+  }
+  RankDetailData.value=await getRankDetail()
 })
   
 watch(()=>RankDetailData.value,

@@ -31,7 +31,7 @@ export function loginByCaptcha(phone, captcha) {
 // 2、退出登录
 
 export function logout() {
-  return api.get('/logout', {
+  return  apiClient.get('/logout', {
     params: {
     }
   })

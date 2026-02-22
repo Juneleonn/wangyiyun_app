@@ -27,9 +27,20 @@
             <!-- 音乐模块 -->
              <MusicSelect v-if="SelectIndex===1"/>
             <!-- 播客模块 -->
-             <BroadcastSelect v-if="SelectIndex===2"/>
+            <div v-else-if="SelectIndex===2" class="placeholder-section">
+                <p class="placeholder-text">该模块为扩展预留</p>
+                <p class="placeholder-sub">This section is reserved for future features.</p>
+            </div>
             <!-- 听书模块 -->
+            <div v-else-if="SelectIndex===3" class="placeholder-section">
+                <p class="placeholder-text">该模块为扩展预留</p>
+                <p class="placeholder-sub">This section is reserved for future features.</p>
+            </div>
             <!-- 免费听模块 -->
+            <div v-else-if="SelectIndex===4" class="placeholder-section">
+                <p class="placeholder-text">该模块为扩展预留</p>
+                <p class="placeholder-sub">This section is reserved for future features.</p>
+            </div>
         </div>
         <BottomNav/>
         <div class="PlayControl" v-if="MusicDetail">
@@ -45,7 +56,6 @@
 import BottomNav from '@/components/HomePage/elements/BottomNav.vue'
 import RecommendSelect from '@/components/HomePage/RecommendSelect/RecommendSelect.vue'
 import MusicSelect from '@/components/HomePage/MusicSelect/MusicSelect.vue'
-import BroadcastSelect from '@/components/HomePage/BroadcastSelect/BroadcastSelect.vue'
 import PlayControl from '@/components/Public/PlayControl.vue'
 import{computed}from'vue'
 import{useStore}from'vuex'
@@ -121,5 +131,28 @@ padding: 2rem;
     position: fixed;
     bottom: 8rem;
     width: 100%;
+}
+
+.placeholder-section {
+    padding: 4rem 2rem;
+    text-align: center;
+    min-height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
+    border-radius: 0.8rem;
+    margin-top: 1rem;
+    .placeholder-text {
+        font-size: 1.5rem;
+        color: #666;
+        margin: 0 0 0.6rem 0;
+    }
+    .placeholder-sub {
+        font-size: 1.2rem;
+        color: #999;
+        margin: 0;
+    }
 }
 </style>

@@ -1,11 +1,11 @@
 // src/request/index.js
 import axios from 'axios'
 
-// 判断环境：开发环境用本地，生产环境用 Vercel
+// 判断环境：开发环境用本地，生产环境用自己部署的 Vercel API
 const baseURL =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : 'https://neteasecloudmusicapi-main.vercel.app'
+    : 'https://neteasecloudmusicapi-main-seven.vercel.app'
 
 const apiClient = axios.create({
   baseURL,

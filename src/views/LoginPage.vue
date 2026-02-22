@@ -1,5 +1,10 @@
 <template>
     <div class="LoginPageContainer">
+        <van-nav-bar
+            title="登录"
+            left-arrow
+            @click-left="goHome"
+        />
         <h3>登录页</h3>
         <van-cell-group inset>
         <van-field
@@ -18,7 +23,14 @@
             placeholder="请输入短信验证码"
           >
             <template #button>
-              <van-button size="small" type="primary" @click="AcquireSms">发送验证码</van-button>
+              <van-button
+                size="small"
+                type="primary"
+                :disabled="countdown > 0"
+                @click="AcquireSms"
+              >
+                {{ countdown > 0 ? `${countdown}秒后重发` : '发送验证码' }}
+              </van-button>
             </template>
           </van-field>
         </van-cell-group>
@@ -28,22 +40,49 @@
 </template>
 
 <script setup>
-import{onMounted,ref}from'vue'
+import{onMounted,onUnmounted,ref}from'vue'
 import{sendCaptcha,loginByCaptcha}from'@/request/api/Login.js'
 import { useRouter } from 'vue-router' 
 const router = useRouter() // 获取 router 实例
+
+function goHome() {
+    router.push('/')
+}
+
 const phone=ref(null)
 const CaptchaData=ref(null)//获取验证码的消息
 const sms=ref(null)
 const LoginResult=ref(null)
 const LoginCookie=ref(null)
+const countdown=ref(0)
+let countdownTimer=null
 import{useStore}from'vuex'
 const store=useStore()
+
+function startCountdown(){
+  countdown.value=60
+  if(countdownTimer) clearInterval(countdownTimer)
+  countdownTimer=setInterval(()=>{
+    countdown.value-=1
+    if(countdown.value<=0 && countdownTimer){
+      clearInterval(countdownTimer)
+      countdownTimer=null
+    }
+  },1000)
+}
+
 // 获取验证码
 async function AcquireSms(){
-CaptchaData.value=await sendCaptcha(phone.value)
-
-
+  if(countdown.value>0) return
+  if(!phone.value||!/^1\d{10}$/.test(phone.value)){
+    return
+  }
+  try {
+    CaptchaData.value=await sendCaptcha(phone.value)
+    startCountdown()
+  } catch (_) {
+    // 发送失败时不开始倒计时，用户可重试
+  }
 }
 // 验证码登录
 async function handleLogin(){
@@ -66,7 +105,13 @@ if(LoginResult.value.request.status===200){
 }
 onMounted(async()=>{
 
+})
 
+onUnmounted(()=>{
+  if(countdownTimer){
+    clearInterval(countdownTimer)
+    countdownTimer=null
+  }
 })
 
 
