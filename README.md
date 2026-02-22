@@ -124,26 +124,6 @@ Output is in the `dist/` folder.
 
 ---
 
-## Deployment and uploading the project
-
-### Deploying the frontend (recommended for portfolio)
-
-You can deploy **only the frontend**; the production build already uses a public API, so the live site will work without your own backend.
-
-1. **Build:**  
-   `npm run build`
-
-2. **Deploy the `dist/` folder** to any static host, for example:
-   - **Vercel:** Connect your Git repo, set build command `npm run build`, output directory `dist`.
-   - **Netlify:** Same idea — build command `npm run build`, publish directory `dist`.
-
-3. **Optional:** If your host supports env vars and you want to point to **your own** deployed API, set something like `VUE_APP_API_URL` and change `src/request/index.js` to use it in production. By default, no change is needed.
-
-### Uploading the project (e.g. GitHub / Fiverr)
-
-- **This repo (frontend):** [Juneleonn/wangyiyun_app](https://github.com/Juneleonn/wangyiyun_app) — push changes here and share this link. This is what you share as “the project” for Fiverr or clients.
-- **Backend:** You do **not** need to upload the backend for the portfolio. For local development, clone [Juneleonn/neteasecloudmusicapi-main](https://github.com/Juneleonn/neteasecloudmusicapi-main) and run `node app.js` as in Option B. For the **live demo**, the frontend uses the public API, so no backend deployment is required.
-
 Summary:
 
 | Goal              | What to do |
