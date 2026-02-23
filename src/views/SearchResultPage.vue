@@ -80,74 +80,74 @@ function goback(){
 </script>
 
 <style lang="less" scoped>
-.SearchResultPage{
+.SearchResultPage {
     padding: 2rem;
-    .SearchResultPageContainer{
-        .topSearch{
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    .Left{
-        /* width: 10%; */
-        .van-icon{
-            font-size: 2rem;
-            font-weight: 800;
+    .SearchResultPageContainer {
+        .topSearch {
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            .Left {
+                .van-icon {
+                    font-size: 2rem;
+                    font-weight: 800;
+                }
+            }
+            .Right {
+                flex: 1;
+                min-width: 0;
+                :deep(.van-search) {
+                    background-color: #f5f5f5;
+                }
+            }
         }
-        .Right{
-            /* width: 90%; */
-
-        }
-    }
-}        
-.searchListContainer{
-    .searchList{
-        margin-top: 1rem;
-        ul{
-            li{
-                padding-top: 0.5rem;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                height: 4rem;
-                .leftInfo{
-                    width: 70%;
-
-                    .TopSong{
-                        font-size: 1.5rem;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                    }
-                    .ButtomSinger{
-                        font-size: 1rem;
-                        color: #b7b6bc;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
+        .searchListContainer {
+            .searchList {
+                margin-top: 1rem;
+                ul {
+                    li {
+                        padding-top: 0.5rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        height: 4rem;
+                        .leftInfo {
+                            width: 70%;
+                            .TopSong {
+                                font-size: 1.5rem;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+                            .ButtomSinger {
+                                font-size: 1rem;
+                                color: #b7b6bc;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                            }
+                        }
+                        .RightButton {
+                            display: flex;
+                            .van-icon {
+                                padding-left: 1rem;
+                            }
+                            .More {
+                                rotate: 90deg;
+                            }
+                            font-size: 1.8rem;
+                            color: #b7b6bc;
+                        }
                     }
                 }
-                    .RightButton{
-                        display: flex;
-                        .van-icon{
-                            padding-left: 1rem;
-                        }
-                        .More{
-                            rotate: 90deg;
-                        }
-                        font-size: 1.8rem;
-                         color: #b7b6bc;
-                        /* float: right; */
-                    }
             }
         }
     }
 }
-    }
+.PlayControl {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
-.PlayControl{
-        position: fixed;
-        left: 0;
-        bottom:0;
-        width: 100%;
-    } 
 </style>

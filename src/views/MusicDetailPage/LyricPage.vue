@@ -161,24 +161,24 @@ function ShowPlaylist(){
 
 watch(()=>musicID.value,
 async(newID)=>{
-LyricData.value=await getLyric(newID)
-console.log('歌词',LyricData.value)
-const raw=LyricData.value.data.lrc.lyric
-Lyric.value=parseLyric(raw)
-console.log('lyric',Lyric.value)
+  try {
+    LyricData.value = await getLyric(newID)
+    const raw = LyricData.value?.data?.lrc?.lyric ?? ''
+    Lyric.value = parseLyric(raw) || []
+  } catch (e) {
+    Lyric.value = []
+  }
 }, { immediate: true })
 
 // 每秒检查当前时间对应哪一句歌词
 watch(currentTime, (time) => {
-  if(Lyric.value.length){
+  if (!Lyric.value || !Lyric.value.length) return
   for (let i = 0; i < Lyric.value.length; i++) {
     if (time < Lyric.value[i].time) {
       LyricIndex.value = Math.max(0, i - 1)
       break
     }
   }
-  }
-
 })
 const lyricLineRefs = ref([])
 

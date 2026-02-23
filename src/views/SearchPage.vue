@@ -100,9 +100,12 @@ onMounted(() => {
             font-size: 2rem;
             font-weight: 800;
         }
+    }
         .Right{
-            /* width: 90%; */
-
+        flex: 1;
+        min-width: 0;
+        :deep(.van-search) {
+            background-color: #f5f5f5;
         }
     }
 }

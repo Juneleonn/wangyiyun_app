@@ -95,14 +95,16 @@ padding: 2rem;
     align-items: center;
     justify-content: left;
     .Left{
-        /* width: 10%; */
         .iconfont{
             font-size: 2rem;
             font-weight: 800;
         }
-        .Right{
-            /* width: 90%; */
-
+    }
+    .Right{
+        flex: 1;
+        min-width: 0;
+        :deep(.van-search) {
+            background-color: #f5f5f5;
         }
     }
 }
