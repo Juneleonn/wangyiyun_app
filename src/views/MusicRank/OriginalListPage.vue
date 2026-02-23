@@ -174,7 +174,7 @@ console.log('监听到MusicDetail',newval)
     }
     .CenterButton{
         .Button{
-            position: absolute;
+            position: relative;
             left: 50%;
             transform: translateX(-50%);
             margin-top: 18rem;
@@ -198,7 +198,7 @@ console.log('监听到MusicDetail',newval)
         height: 4rem;
         line-height: 4rem;
         /* background-color: aquamarine; */
-        margin-top: 23rem;
+        margin-top: 1.5rem;
         .left{
             float:left;
             display: flex;
