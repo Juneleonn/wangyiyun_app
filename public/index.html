@@ -24,8 +24,10 @@
     const recalc = () => {
       const width = docEl.clientWidth;
       if (!width) return;
-      // 假设设计稿是 375px，设置 1rem = width / 37.5
-      docEl.style.fontSize = (width / 37.5) + 'px';
+      // 设计稿 375px：1rem = width/37.5；大屏限制根字号，避免电脑上 rem 过大
+      const base = width / 37.5;
+      const maxPx = 20;
+      docEl.style.fontSize = Math.min(base, maxPx) + 'px';
     };
     window.addEventListener(resizeEvt, recalc, false);
     document.addEventListener('DOMContentLoaded', recalc, false);
